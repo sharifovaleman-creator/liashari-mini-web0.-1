@@ -1,0 +1,196 @@
+/* Ümumi ayarlar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Səhifə */
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f6f7;
+    color: #222;
+    padding: 15px;
+}
+
+/* Məhsulların yerləşməsi */
+section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 15px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Məhsul kartı */
+.urun {
+    width: 100%;
+    min-width: 0;
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    
+    text-align: center;
+}
+
+/* Məhsul şəkli */
+.sekil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+}
+
+.sekil img {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 12px;
+}
+
+/* Məhsul adı */
+.ad {
+    width: 100%;
+    font-size: 17px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+/* Məhsul qiyməti */
+.qiymet {
+    font-size: 22px;
+    font-weight: bold;
+    color: #16803c;
+}
+
+/* Barkod sahəsi */
+.barkod {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    background: #fff;
+}
+
+/* Barkod şəkli və SVG */
+.barkod svg,
+.barkod img {
+    display: block;
+    
+    width: 100%;
+    max-width: 260px;
+    height: 65px;
+    
+    margin: 0 auto;
+}
+
+/* Barkod nömrəsi */
+.barkodnomre {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+    
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: #333;
+    text-align: center;
+    
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+/* Telefonlar */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    section {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .urun {
+        padding: 12px;
+    }
+    
+    .sekil {
+        height: 130px;
+    }
+    
+    .ad {
+        font-size: 16px;
+    }
+    
+    .qiymet {
+        font-size: 21px;
+    }
+    
+    .barkod {
+        width: 100%;
+        overflow: hidden;
+    }
+    
+    .barkod svg,
+    .barkod img {
+        width: 100%;
+        max-width: 100%;
+        height: 60px;
+    }
+    
+    .barkodnomre {
+        font-size: 13px;
+        letter-spacing: 1.5px;
+    }
+}
+.barkod {
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    background: white;
+}
+
+.barkod svg {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+}
+
+.barkodnomre {
+    margin-top: 6px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 480px) {
+    .barkod svg {
+        max-width: 100%;
+    }
+    
+    .barkodnomre {
+        font-size: 13px;
+        letter-spacing: 1px;
+    }
+}
