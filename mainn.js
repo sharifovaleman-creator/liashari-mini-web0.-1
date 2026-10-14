@@ -2,7 +2,7 @@
 function initLiashari() {
   const urunler = document.querySelectorAll(".urun");
   const printButton = document.getElementById("printCards");
-const printButton = document.getElementById("printCardss");
+
   // 1. Barkodları yarat və kart sayı sahəsi əlavə et
   urunler.forEach(urun => {
     const nomreElement = urun.querySelector(".barkodnomre");
@@ -293,7 +293,7 @@ if (document.readyState === "loading") {
    function initLiashari() {
   const urunler = document.querySelectorAll(".urun");
   const printButton = document.getElementById("printCards");
-const printButton = document.getElementById("printCardss");
+
   // 1. Barkodları yarat və kart sayı sahəsi əlavə et
   urunler.forEach(urun => {
     const nomreElement = urun.querySelector(".barkodnomre");
