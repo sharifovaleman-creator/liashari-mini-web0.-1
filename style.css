@@ -1,0 +1,751 @@
+/* Ümumi ayarlar */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Səhifə */
+body {
+    font-family: Arial, sans-serif;
+   background:
+        radial-gradient(circle at top left, #dbeafe, transparent 45%),
+        radial-gradient(circle at bottom right, #ede9fe, transparent 45%),
+        #f3f6fc;
+    color: #222;
+    padding: 15px;
+}
+
+/* Çap idarəetməsi */
+.print-controls {
+    padding: 16px;
+    margin-bottom: 20px;
+    background: #f3f6ff;
+    border-radius: 12px;
+}
+
+.print-controls h2 {
+    color: #2563eb;
+    margin: 0 0 8px;
+}
+
+.print-controls p {
+    color: #555;
+    font-size: 14px;
+}
+
+#printCards {
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 18px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+/* Input */
+input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+/* Məhsulların yerləşməsi */
+section {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Məhsul kartı */
+.urun {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 15px;
+    
+    /* Glass effekti */
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 16px;
+    
+    box-shadow:
+        0 8px 24px rgba(31, 38, 135, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    
+    transition: transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+/* Kartın üzərinə toxunanda */
+.urun:active {
+    transform: scale(0.98);
+}
+
+/* Məhsul şəkli üçün glass konteyner */
+.sekil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: 100%;
+    height: 150px;
+    padding: 8px;
+    overflow: hidden;
+    
+    background: rgba(255, 255, 255, 0.30);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    border-radius: 16px;
+    
+    box-shadow:
+        0 4px 15px rgba(31, 38, 135, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* Məhsul şəkli */
+.sekil img {
+    display: block;
+    
+    max-width: 100%;
+    max-height: 100%;
+    
+    object-fit: contain;
+    border-radius: 12px;
+    
+    transition: transform 0.3s ease;
+}
+
+/* Şəkilə toxunanda yüngül effekt */
+@media (hover: hover) {
+    .urun:hover .sekil img {
+        transform: scale(1.04);
+    }
+}
+
+/* Qaranlıq rejim */
+body.dark .sekil {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.12);
+    
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Məhsul adı */
+.ad {
+    width: 100%;
+    font-size: 17px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+/* Məhsul qiyməti */
+.qiymet {
+    font-size: 22px;
+    font-weight: bold;
+    color: #16803c;
+}
+
+/* Barkod sahəsi */
+.barkod {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    background: #fff;
+}
+
+/* Barkod SVG və şəkil */
+.barkod svg,
+.barkod img {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    margin: 0 auto;
+}
+
+/* Barkod nömrəsi */
+.barkodnomre {
+    display: block;
+    width: 100%;
+    margin-top: 6px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #333;
+    text-align: center;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+/* Çap üçün barkod */
+.print-barcode {
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+}
+
+.print-barcode svg {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 16mm;
+    margin: 0 auto;
+}
+
+/* Səhifələr */
+.sehife {
+    display: none;
+    padding: 15px 15px 100px;
+    animation: sagdanGel 0.3s ease;
+}
+
+.sehife.aktiv {
+    display: grid;
+}
+
+/* Səhifə keçid animasiyası */
+@keyframes sagdanGel {
+    from {
+        opacity: 0;
+        transform: translateX(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Aşağı navbar */
+/* ALT NAVBAR */
+/* GLASS BOTTOM NAVBAR */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 12px;
+    
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    
+    /* Glass effekti */
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    
+    border-top: 1px solid rgba(255, 255, 255, 0.8);
+    
+    box-shadow:
+        0 -8px 30px rgba(31, 38, 135, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    
+    z-index: 1000;
+}
+
+/* NAV DÜYMƏLƏRİ */
+.nav-btn {
+    flex: 1;
+    max-width: 100px;
+    height: 48px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    border: 1px solid transparent;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.15);
+    
+    cursor: pointer;
+    transition:
+        background 0.25s ease,
+        transform 0.2s ease,
+        box-shadow 0.25s ease;
+    
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* İKONLAR */
+.nav-btn img {
+    width: 27px;
+    height: 27px;
+    object-fit: contain;
+    transition: transform 0.2s ease;
+}
+
+/* AKTİV SƏHİFƏ */
+.nav-btn.aktiv {
+    background: rgba(219, 234, 254, 0.8);
+    border-color: rgba(147, 197, 253, 0.5);
+    
+    box-shadow:
+        0 4px 12px rgba(37, 99, 235, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.nav-btn.aktiv img {
+    transform: scale(1.08);
+}
+
+/* TOXUNMA EFFEKTİ */
+.nav-btn:active {
+    transform: scale(0.93);
+}
+
+/* QARANLIQ REJİM */
+body.dark .bottom-nav {
+    background: rgba(17, 24, 39, 0.75);
+    
+    border-top-color: rgba(255, 255, 255, 0.10);
+    
+    box-shadow:
+        0 -8px 30px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+body.dark .nav-btn {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+body.dark .nav-btn.aktiv {
+    background: rgba(37, 99, 235, 0.25);
+    border-color: rgba(96, 165, 250, 0.25);
+    
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* MOBİL */
+@media (max-width: 480px) {
+    .bottom-nav {
+        gap: 8px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+    .nav-btn {
+        height: 46px;
+        border-radius: 14px;
+    }
+    
+    .nav-btn img {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+/* PRİNTER */
+#printCards {
+    background: #2563eb;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+#printCards img {
+    filter: brightness(0) invert(1);
+}
+
+/* BASILMA EFFEKTİ */
+.nav-btn:active {
+    transform: scale(0.93);
+}
+
+/* MOBİL */
+@media (max-width: 480px) {
+    .bottom-nav {
+        gap: 8px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+    .nav-btn {
+        height: 46px;
+        border-radius: 14px;
+    }
+    
+    .nav-btn img {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+
+/* Barkod böyütmə örtüyü */
+
+.barkod-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 15, 30, 0.70);
+    
+    /* Arxa fon blur */
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+.barkod-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Böyüdülmüş barkod */
+.barkod.barkod-focus {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    
+    transform: translate(-50%, -50%) scale(1.5) !important;
+    
+    z-index: 9999;
+    background: #fff;
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+    
+    cursor: zoom-out;
+    max-width: 90vw;
+    box-sizing: border-box;
+}
+/* Kompüter: 4 sütun */
+@media screen and (min-width: 901px) {
+    section,
+    .sehife section {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+/* Planşet: 2 sütun */
+@media screen and (min-width: 481px) and (max-width: 900px) {
+    section {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Telefon: 1 sütun */
+@media screen and (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    section {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .urun {
+        padding: 12px;
+    }
+
+    .sekil {
+        height: 130px;
+    }
+
+    .ad {
+        font-size: 16px;
+    }
+
+    .qiymet {
+        font-size: 21px;
+    }
+
+    .barkod svg,
+    .barkod img {
+        max-width: 100%;
+    }
+
+    .barkodnomre {
+        font-size: 13px;
+        letter-spacing: 1px;
+    }
+}
+
+/* Çap zamanı navbar gizlənir, səhifələr göstərilir */
+@media print {
+    .bottom-nav {
+        display: none !important;
+    }
+
+    .sehife {
+        display: block !important;
+        animation: none;
+    }
+}
+/* Favori düyməsi */
+.urun {
+    position: relative;
+    overflow: visible;
+}
+
+/* Favori ürəyi həmişə yuxarıda */
+.favori {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    
+    z-index: 100;
+    
+    width: 38px;
+    height: 38px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    color: #64748b;
+    font-size: 24px;
+    line-height: 1;
+    
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    
+    cursor: pointer;
+    transition: transform 0.2s ease,
+        color 0.2s ease,
+        background 0.2s ease;
+}
+
+/* Seçilmiş favori */
+.favori.secilib {
+    color: #ef4444;
+    background: rgba(255, 241, 242, 0.9);
+}
+
+/* Toxunma effekti */
+.favori:active {
+    transform: scale(0.88);
+}
+
+/* Qaranlıq rejim */
+body.dark .favori {
+    background: rgba(55, 65, 81, 0.85);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: #d1d5db;
+}
+
+body.dark .favori.secilib {
+    color: #fb7185;
+    background: rgba(127, 29, 29, 0.35);
+}
+
+/* Gizlədilən məhsullar */
+.urun.favoriden-gizlet {
+  display: none !important;
+}
+/* İdarəetmə paneli */
+.idarəetmə {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+/* Düymələrin ümumi stili */
+.idarəetmə button {
+  flex: 1;
+  min-width: 130px;
+  max-width: 220px;
+  padding: 12px 16px;
+  border: 1px solid #dbeafe;
+  border-radius: 14px;
+  background: #ffffff;
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: 0 3px 10px #00000008;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Favorilər */
+#favorileriGoster {
+  border-color: #fecdd3;
+  color: #e11d48;
+}
+
+/* Düyməyə toxunanda */
+.idarəetmə button:active {
+  transform: scale(0.96);
+}
+
+/* Kompüterdə hover */
+@media (hover: hover) {
+  .idarəetmə button:hover {
+    background: #eff6ff;
+    box-shadow: 0 5px 14px #2563eb18;
+  }
+
+  #favorileriGoster:hover {
+    background: #fff1f2;
+  }
+}
+
+/* Qaranlıq rejim */
+body.dark .idarəetmə button {
+  background: #1f2937;
+  color: #93c5fd;
+  border-color: #374151;
+  box-shadow: none;
+}
+
+body.dark .idarəetmə #favorileriGoster {
+  color: #fda4af;
+  border-color: #4c2835;
+}
+
+/* Kiçik telefonlar */
+@media (max-width: 380px) {
+  .idarəetmə {
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .idarəetmə button {
+    min-width: 0;
+    padding: 11px 8px;
+    font-size: 12px;
+    border-radius: 12px;
+  }
+}
+/* Barkod böyüdüləndə kartın blur effektini söndür */
+.urun:has(.barkod.barkod-focus) {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* Böyüdülmüş barkod */
+.barkod.barkod-focus {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    
+    width: min(90vw, 500px) !important;
+    max-width: 90vw !important;
+    min-width: 0 !important;
+    
+    height: auto !important;
+    max-height: 80vh !important;
+    overflow: auto !important;
+    
+    transform: translate(-50%, -50%) !important;
+    
+    background: #fff !important;
+    padding: 20px !important;
+    border-radius: 16px !important;
+    
+    z-index: 10000 !important;
+    
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Barkodun özü */
+.barkod.barkod-focus svg,
+.barkod.barkod-focus img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+/* Overlay */
+.barkod-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 15, 30, 0.75);
+    
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    
+    transition: opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+.barkod-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+#geriDon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    margin: 10px 0;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #2563eb;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+#geriDon:hover {
+    background: #2563eb;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+#geriDon:active {
+    transform: scale(0.96);
+}
